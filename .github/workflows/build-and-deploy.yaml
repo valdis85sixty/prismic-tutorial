@@ -8,7 +8,7 @@ on:
   # pull:
   #   branches: master
   workflow_dispatch:
-  # repository_dispatch:
+  repository_dispatch:
 
 jobs:
   build-and-deploy:
