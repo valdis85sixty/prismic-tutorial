@@ -5,11 +5,10 @@
 name: Build and Deploy
 
 on:
-  # push:
+  # pull:
   #   branches: master
   workflow_dispatch:
-    types: 
-      - prismic-webhook-build
+  repository_dispatch:
 
 jobs:
   build-and-deploy:
