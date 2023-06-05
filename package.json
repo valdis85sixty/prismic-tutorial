@@ -13,7 +13,10 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@prismicio/react": "^2.6.2",
     "gatsby": "^5.10.0",
+    "gatsby-plugin-image": "^3.10.0",
+    "gatsby-source-prismic": "^5.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -23,5 +26,8 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "devDependencies": {
+    "dotenv": "^16.1.4"
   }
 }

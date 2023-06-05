@@ -1,0 +1,41 @@
+#https://github.com/actions/setup-node
+#https://docs.github.com/en/actions/quickstart
+#https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions
+# https://kontent.ai/blog/how-to-trigger-github-action-using-webhook-with-no-code/
+name: Build and Deploy
+
+on:
+  # push:
+  #   branches: master
+  workflow_dispatch:
+    types: 
+      - prismic-webhook-build
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy Gatsby site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with: 
+          node-version: '18.x'
+
+      - name: Install Project Dependencies
+        run: npm ci
+
+      - name: Install Gatsby CLI
+        run: npm install -g gatsby-cli
+
+      - run: |
+        echo "PRISMIC_REPO_NAME=${{ secrets.PRISMIC_REPO_NAME }}" > .env
+        echo "PRISMIC_CUSTOM_TYPES_API_TOKEN=${{ secrets.PRISMIC_CUSTOM_TYPES_API_TOKEN }}" >> .env
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify build
+        run: ls -la public
