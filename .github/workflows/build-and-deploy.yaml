@@ -8,7 +8,7 @@ on:
   # pull:
   #   branches: master
   workflow_dispatch:
-  repository_dispatch:
+  # repository_dispatch:
 
 jobs:
   build-and-deploy:
@@ -30,8 +30,8 @@ jobs:
         run: npm install -g gatsby-cli
 
       - run: |
-          echo "PRISMIC_REPO_NAME=${{ secrets.PRISMIC_REPO_NAME }}" > .env
-          echo "PRISMIC_CUSTOM_TYPES_API_TOKEN=${{ secrets.PRISMIC_CUSTOM_TYPES_API_TOKEN }}" >> .env
+          echo "PRISMIC_REPO_NAME=${{ secrets.PRISMIC_REPO_NAME }}" > .env.production
+          echo "PRISMIC_CUSTOM_TYPES_API_TOKEN=${{ secrets.PRISMIC_CUSTOM_TYPES_API_TOKEN }}" >> .env.production
 
       - name: Build
         run: npm run build
